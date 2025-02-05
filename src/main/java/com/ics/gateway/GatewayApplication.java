@@ -3,6 +3,11 @@ package com.ics.gateway;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.gateway.route.RouteLocator;
+import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
+import org.springframework.context.annotation.Bean;
+
+import com.ics.gateway.filter.MyFilterGatewayFilterFactory;
 
 @SpringBootApplication
 public class GatewayApplication implements CommandLineRunner {
@@ -17,9 +22,12 @@ public class GatewayApplication implements CommandLineRunner {
 	}
 
 //	@Bean
-//	 RouteLocator routerBuilder(RouteLocatorBuilder routeLocatorBuilder) {
-//		return routeLocatorBuilder.routes().route("api_gateway", r -> r.path("/user/**").uri("http://localhost:8081/"))
-//				.build();
+//	RouteLocator routerBuilder(RouteLocatorBuilder routeLocatorBuilder) {
+//		return routeLocatorBuilder.routes().route("api_gateway", r -> r.path("/user/**")
+//		// filters(f->f.filters( new MyFilterGatewayFilterFactory.Config()) )
+//
+////				filters(f -> f.filter(filter.apply(new MyFilterGatewayFilterFactory.Config())))
+//				.uri("http://localhost:8081/")).build();
 //	}
 
 }
