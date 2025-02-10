@@ -3,11 +3,6 @@ package com.ics.gateway;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.gateway.route.RouteLocator;
-import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
-import org.springframework.context.annotation.Bean;
-
-import com.ics.gateway.filter.MyFilterGatewayFilterFactory;
 
 @SpringBootApplication
 public class GatewayApplication implements CommandLineRunner {

@@ -20,14 +20,20 @@ public class GlobalCustomFilter implements GlobalFilter, Ordered {
 	@Override
 	public int getOrder() {
 
-		return -1;
+		return 0;
 	}
 
 	/**
-	 * chain provides a way to delegate to the next filter
+	 * @exchange is used to access the current request data like request header,read
+	 *           request body etc.
+	 * @chain provides a way to delegate to the next filter
 	 */
 	@Override
 	public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
+
+		// String headerValue =
+		// exchange.getRequest().getHeaders().getFirst("Authorization");
+		// System.out.println(headerValue);
 		System.out.println("helloo from global custom filter");
 		return chain.filter(exchange);
 

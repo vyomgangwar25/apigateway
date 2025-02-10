@@ -1,8 +1,12 @@
 package com.ics.gateway.filter;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
 import org.springframework.stereotype.Component;
+import org.springframework.util.ObjectUtils;
+
+import com.ics.gateway.util.JwtUtil;
 
 /**
  * MyFilterGatewayFilter
@@ -16,6 +20,9 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class MyFilterGatewayFilterFactory extends AbstractGatewayFilterFactory<MyFilterGatewayFilterFactory.Config> {
+
+	@Autowired
+	private JwtUtil jwtUtil;
 
 	public MyFilterGatewayFilterFactory() {
 		/**
@@ -35,10 +42,25 @@ public class MyFilterGatewayFilterFactory extends AbstractGatewayFilterFactory<M
 	@Override
 	public GatewayFilter apply(Config config) {
 		return (exchange, chain) -> {
-			System.out.println("helloooo from custom filter");
+
+			final String authorizationHeader = exchange.getRequest().getHeaders().getFirst("Authorization");
+
+			if (authorizationHeader != null) {
+				String token_frontend = authorizationHeader.substring(7);
+				if (ObjectUtils.isEmpty(token_frontend) || token_frontend.equals("null")) {
+					return chain.filter(exchange);
+				}
+
+				Boolean isValid = jwtUtil.validateToken(token_frontend);
+				if (isValid) {
+					return chain.filter(exchange);
+				} else {
+					System.out.println("invalid token !!");
+				}
+			}
+
 			return chain.filter(exchange);
 		};
 	}
-	// TODO Auto-generated method stub
 
 }
