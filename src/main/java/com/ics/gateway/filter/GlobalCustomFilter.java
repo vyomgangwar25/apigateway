@@ -1,5 +1,7 @@
 package com.ics.gateway.filter;
 
+ 
+
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.Ordered;
@@ -31,9 +33,8 @@ public class GlobalCustomFilter implements GlobalFilter, Ordered {
 	@Override
 	public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
 
-		// String headerValue =
-		// exchange.getRequest().getHeaders().getFirst("Authorization");
-		// System.out.println(headerValue);
+		
+		 
 		System.out.println("helloo from global custom filter");
 		return chain.filter(exchange);
 

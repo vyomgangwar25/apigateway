@@ -71,7 +71,7 @@ public class JwtUtil {
 			return true;
 		}
 
-		return false ;
+		return false;
 	}
 
 }
