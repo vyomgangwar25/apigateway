@@ -15,8 +15,8 @@ import com.ics.gateway.util.JwtUtil;
  * **/
 
 /**
- * AbstractGatewayFilterFactory is serve as base class for creating custom filter
- * customGatewayFilterFactory
+ * AbstractGatewayFilterFactory is serve as base class for creating custom
+ * filter customGatewayFilterFactory
  */
 @Component
 public class MyFilterGatewayFilterFactory extends AbstractGatewayFilterFactory<MyFilterGatewayFilterFactory.Config> {
@@ -68,7 +68,7 @@ public class MyFilterGatewayFilterFactory extends AbstractGatewayFilterFactory<M
 		String openpaths[] = { "/user/login", "/user/registration", "/user/forgetpassword", "/user/refreshtoken" };
 		for (String path : openpaths) {
 			if (endpoint.equals(path)) {
-				System.out.println(path);
+				// System.out.println(path);
 				return true;
 			}
 		}
